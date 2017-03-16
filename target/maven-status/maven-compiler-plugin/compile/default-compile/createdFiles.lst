@@ -1,0 +1,8 @@
+com\lauta\model\Triangle.class
+com\lauta\model\NaT.class
+com\lauta\model\TriangleFactory.class
+com\lauta\model\Isoceles.class
+com\lauta\model\Equilateral.class
+com\lauta\model\Scalene.class
+com\lauta\App.class
+com\lauta\model\BaseT.class
