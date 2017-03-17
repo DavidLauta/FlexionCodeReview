@@ -4,8 +4,6 @@
  */
 package com.lauta.model;
 
-import java.math.BigDecimal;
-
 /**
  * This factory will validate that the sides given can construct a
  * triangle Returns a sub class of type Equilateral, Isoceles, Scalene or NaT

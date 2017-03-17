@@ -78,7 +78,7 @@ public class TriangleFactoryTest {
 
     @Test
     public void testMakeTriangleNaT() {
-        System.out.println("makeTriangle NaT");
+        System.out.println("makeTriangle NotaTriangle");
         double sideA = 4.0;
         double sideB = 6.0;
         double sideC = 11.0;

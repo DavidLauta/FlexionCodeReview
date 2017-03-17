@@ -16,7 +16,7 @@ public class Scalene extends BaseT implements Triangle{
     }
     @Override
     public String getName(){
-        String name = "The triangle with the sides " + getSideA() + " " + getSideB() +" " + getSideC() +", is an Scalene triangle";
+        String name = "The triangle with the sides " + getSideA() + " " + getSideB() +" " + getSideC() +", is a Scalene triangle";
         return name;
     }
     
