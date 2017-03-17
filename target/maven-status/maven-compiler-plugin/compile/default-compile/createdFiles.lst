@@ -1,5 +1,5 @@
 com\lauta\model\Triangle.class
-com\lauta\model\NaT.class
+com\lauta\model\NotaTriangle.class
 com\lauta\model\TriangleFactory.class
 com\lauta\model\Isoceles.class
 com\lauta\model\Equilateral.class

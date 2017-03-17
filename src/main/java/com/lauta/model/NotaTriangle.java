@@ -8,9 +8,9 @@ package com.lauta.model;
  * This class represents a Triangle where the sides do not create a valid Triangle
  * @author Dave
  */
-public class NaT extends BaseT implements Triangle{
+public class NotaTriangle extends BaseT implements Triangle{
     
-    public NaT(double sideA, double sideB, double sideC){
+    public NotaTriangle(double sideA, double sideB, double sideC){
         super();
         setSides(sideA, sideB, sideC);
     }

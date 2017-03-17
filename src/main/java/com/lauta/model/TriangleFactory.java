@@ -7,7 +7,7 @@ package com.lauta.model;
 import java.math.BigDecimal;
 
 /**
- * This superclass factory will validate that the sides given can construct a
+ * This factory will validate that the sides given can construct a
  * triangle Returns a sub class of type Equilateral, Isoceles, Scalene or NaT
  *
  * @author Dave
@@ -19,7 +19,7 @@ public class TriangleFactory {
 
     public BaseT makeTriangle(double sideA, double sideB, double sideC) {
 
-        if (isT(sideA, sideB, sideC)) {
+        if (isTriangle(sideA, sideB, sideC)) {
             if (isEquilateral(sideA, sideB, sideC)) {
                 return new Equilateral(sideA, sideB, sideC);
             }
@@ -31,54 +31,25 @@ public class TriangleFactory {
             }
         }
         //Bad case -- IsT returned invalid result
-        return new NaT(sideA, sideB, sideC);
+        return new NotaTriangle(sideA, sideB, sideC);
     }
 
-    //This will calcluate the Angles from the sides and determine that the sum == 180
-    private boolean isT(double sideA, double sideB, double sideC) {
-        double angleA, angleB, angleC;
-        double sideA2, sideB2, sideC2;
-        double radA, radB, radC;
-        try {
-            sideA2 = sideA * sideA;
-            sideB2 = sideB * sideB;
-            sideC2 = sideC * sideC;
-
-            radA = Math.abs(( sideB2 + sideC2 - sideA2 ) / ( 2.0 * sideB * sideC));
-            if ( radA > 1.0 ){ //Radians must be between 0.0 and 1.0
-                System.out.println("isT result " + false);
-                return false;
-            }
-            angleA = Math.acos( (double)(BigDecimal.valueOf(radA).setScale(4,BigDecimal.ROUND_HALF_UP).doubleValue()) );
-            angleA = Math.toDegrees(angleA);
-            
-            radB = Math.abs(( sideA2 + sideC2 - sideB2 ) / ( 2.0 * sideA * sideC));
-            if ( radB > 1.0 ){ //Radians must be between 0.0 and 1.0
-                System.out.println("isT result " + false);
-                return false;
-            }
-            angleB = Math.acos( BigDecimal.valueOf(radB).setScale(8,BigDecimal.ROUND_HALF_UP).doubleValue() );
-            angleB = Math.toDegrees(angleB);
-            
-            radC = Math.abs((sideA2 + sideB2 - sideC2 ) / ( 2.0 * sideA * sideB));
-            if ( radC > 1.0 ){ //Radians must be between 0.0 and 1.0
-                System.out.println("isT result " + false);
-                return false;
-            }
-            angleC = Math.acos( BigDecimal.valueOf(radC).setScale(8,BigDecimal.ROUND_HALF_UP).doubleValue() );
-            angleC = Math.toDegrees(angleC);
-            
-            //System.out.println(angleA + " " + angleB + " " + angleC + " " + (angleA + angleB + angleC));
-        } catch (Exception e) {
-            System.err.println("isT exception " + e.getClass().getName() + " " + e.getMessage());
-            //e.printStackTrace();
-            return false;
-        }
-        boolean result = ( 0.005 > Math.abs(180.0 - angleA - angleB - angleC));
-        System.out.println("isT result " + result);// +  " " + (180.0 - angleA - angleB - angleC));
-        return result;
-    }
-
+    // A triangle can be create from three sides if the sum of the two shortest sides is > the longest side.
+     private boolean isTriangle(double sideA, double sideB, double sideC) {
+         //brute force
+         if ( sideA >= sideB && sideA >= sideC ){
+             return sideA < sideB + sideC;
+         }
+         if ( sideB >= sideA && sideB >= sideC ){
+             return sideB < sideA + sideC;
+         }
+         if ( sideC >= sideA && sideC >= sideB ){
+             return sideC < sideA + sideB;
+         }
+         return false;
+     }
+     
+  
     //Determine if the sides are all equal length
     private boolean isEquilateral(double sideA, double sideB, double sideC) {
         return (sideA == sideB) && (sideA == sideC);

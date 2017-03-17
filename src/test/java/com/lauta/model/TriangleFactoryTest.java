@@ -84,6 +84,6 @@ public class TriangleFactoryTest {
         double sideC = 11.0;
         TriangleFactory instance = new TriangleFactory();
         BaseT result = instance.makeTriangle(sideA, sideB, sideC);
-        assertTrue(result instanceof NaT );
+        assertTrue(result instanceof NotaTriangle );
     }
 }
